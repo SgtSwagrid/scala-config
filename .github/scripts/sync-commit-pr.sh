@@ -30,7 +30,7 @@ if git diff --cached --quiet; then
   exit 0
 fi
 
-git commit -m "[config]: Sync settings from `scala-settings`."
+git commit -m '[config]: Sync settings from `scala-settings`.'
 
 # Force-push so a second run updates the branch in place.
 # If a PR is already open against this branch it will reflect the
