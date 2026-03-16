@@ -16,7 +16,7 @@ jobs:
     name: Load targets
     runs-on: ubuntu-latest
     outputs:
-      targets: ${{ steps.list.outputs.target }}
+      targets: ${{ steps.list.outputs.targets }}
 
     steps:
       - name: Parse repository names
