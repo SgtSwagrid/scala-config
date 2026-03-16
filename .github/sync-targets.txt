@@ -1,0 +1,5 @@
+# List of repositories to sync settings into.
+# One "owner/repo" entry per line. Blank lines and comments are ignored.
+
+# myorg/repo-a
+# myorg/repo-b

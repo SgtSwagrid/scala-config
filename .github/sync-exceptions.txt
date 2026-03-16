@@ -1,0 +1,9 @@
+# Files that must NOT be copied to target repositories.
+# One path per line, relative to the repository root.
+# Blank lines and comments are ignored.
+
+README.md
+LICENSE.md
+.github/sync-targets.txt
+.github/sync-exceptions.txt
+.github/workflows/sync.yml
