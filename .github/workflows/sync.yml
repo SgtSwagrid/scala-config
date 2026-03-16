@@ -25,13 +25,7 @@ jobs:
 
       - name: Parse repository names
         id: list
-        run: |
-          # Read .github/sync-targets.txt, strip comments and blank lines,
-          # and emit a compact JSON array, e.g. ["myorg/repo-a","myorg/repo-b"]
-          json=$(grep -v '^\s*#' .github/sync-targets.txt \
-            | grep -v '^\s*$' \
-            | jq -Rsc '[split("\n")[] | select(. != "")]')
-          echo "targets=$json" >> "$GITHUB_OUTPUT"
+        run: bash .github/scripts/sync-list-targets.sh
 
   sync:
     name: Sync → ${{ matrix.target }}
@@ -59,107 +53,9 @@ jobs:
           path: target
 
       - name: Sync files
-        run: |
-          set -euo pipefail
-
-          # Load exceptions into an associative set for O(1) lookup.
-          declare -A EXCEPTED
-          while IFS= read -r line; do
-            EXCEPTED["$line"]=1
-          done < <(grep -v '^\s*#' source/.github/sync-exceptions.txt | grep -v '^\s*$')
-
-          is_excepted() { [[ -n "${EXCEPTED[$1]+_}" ]]; }
-
-          cd source
-
-          # --- 1. Copy all currently tracked files (minus exceptions) ----------
-          mapfile -t CURRENT < <(git ls-files)
-          for file in "${CURRENT[@]}"; do
-            if is_excepted "$file"; then
-              echo "Skipping (excepted): $file"
-              continue
-            fi
-            dest="../target/$file"
-            mkdir -p "$(dirname "$dest")"
-            cp "$file" "$dest"
-            echo "Copied: $file"
-          done
-
-          # --- 2. Delete files removed from this repo (and not excepted) -------
-          # Files ever deleted in git history, minus files currently tracked
-          # (handles the case where a file was deleted then re-added).
-          mapfile -t EVER_DELETED < <(
-            git log --diff-filter=D --name-only --pretty=format: | sort -u
-          )
-          declare -A CURRENT_SET
-          for f in "${CURRENT[@]}"; do CURRENT_SET["$f"]=1; done
-
-          for file in "${EVER_DELETED[@]}"; do
-            [[ -z "$file" ]] && continue
-            # Skip if re-added to this repo.
-            [[ -n "${CURRENT_SET[$file]+_}" ]] && continue
-            # Skip if excepted.
-            is_excepted "$file" && continue
-
-            target_file="../target/$file"
-            if [[ -e "$target_file" ]]; then
-              rm "$target_file"
-              echo "Deleted (removed from source): $file"
-            fi
-          done
+        run: bash source/.github/scripts/sync-files.sh
 
       - name: Commit with PR
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          set -euo pipefail
-          cd target
-
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Ensure pushes use the token explicitly.
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ matrix.target }}.git"
-
-          # Detect the default branch of the target repo.
-          DEFAULT_BRANCH=$(gh repo view "${{ matrix.target }}" --json defaultBranchRef --jq '.defaultBranchRef.name')
-
-          # Always base the sync branch on the latest default branch so the PR
-          # is never out of date, even if main moved forward since checkout.
-          git fetch origin "$DEFAULT_BRANCH"
-          SYNC_BRANCH="sync/scala-settings"
-          git checkout -B "$SYNC_BRANCH" "origin/$DEFAULT_BRANCH"
-
-          git add -A
-
-          if git diff --cached --quiet; then
-            echo "No changes to commit for ${{ matrix.target }}."
-            exit 0
-          fi
-
-          SOURCE_SHA="${{ github.sha }}"
-          git commit -m "chore: sync settings from scala-settings@${SOURCE_SHA:0:7}"
-
-          # Force-push so a second run updates the branch in place.
-          # If a PR is already open against this branch it will reflect the
-          # new commits automatically — no need to close and reopen.
-          git push --force origin "$SYNC_BRANCH"
-
-          # Open a PR only if one isn't already open for this branch.
-          existing=$(gh pr list \
-            --repo "${{ matrix.target }}" \
-            --head "$SYNC_BRANCH" \
-            --state open \
-            --json number \
-            --jq 'length')
-
-          if [[ "$existing" -eq 0 ]]; then
-            gh pr create \
-              --repo "${{ matrix.target }}" \
-              --head "$SYNC_BRANCH" \
-              --base "$DEFAULT_BRANCH" \
-              --title "chore: sync settings from scala-settings" \
-              --body "Automated sync from [scala-settings](https://github.com/${{ github.repository }}) @ \`${{ github.sha }}\`."
-          else
-            echo "PR already open for $SYNC_BRANCH — updated by force-push."
-          fi
+        run: bash source/.github/scripts/sync-commit-pr.sh "${{ matrix.target }}" "${{ github.sha }}" "${{ github.repository }}"

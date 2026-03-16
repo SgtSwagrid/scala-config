@@ -7,3 +7,6 @@ LICENSE.md
 .github/sync-targets.txt
 .github/sync-exceptions.txt
 .github/workflows/sync.yml
+.github/scripts/sync-list-targets.sh
+.github/scripts/sync-files.sh
+.github/scripts/sync-commit-pr.sh
