@@ -50,8 +50,8 @@ if [[ "$existing" -eq 0 ]]; then
     --repo "$TARGET_REPO" \
     --head "$SYNC_BRANCH" \
     --base "$DEFAULT_BRANCH" \
-    --title "[config]: Sync settings from `scala-settings`." \
-    --body "Automatic synchronisation from [scala-settings](https://github.com/${SOURCE_REPO}) ([\`${SOURCE_SHA}\`](https://github.com/${SOURCE_REPO}/commit/${SOURCE_SHA}))."
+    --title "[config]: Sync settings from \`scala-settings\`." \
+    --body "Automatic synchronisation of basic project configuration from [scala-settings](https://github.com/${SOURCE_REPO}) ([\`${SOURCE_SHA}\`](https://github.com/${SOURCE_REPO}/commit/${SOURCE_SHA}))."
 else
   echo "PR already open for $SYNC_BRANCH — updated by force-push."
 fi
