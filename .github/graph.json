@@ -2,7 +2,8 @@
   "ignore": [
     "README.md",
     ".github/graph.json",
-    ".github/workflows/sync.yml"
+    ".github/workflows/sync.yml",
+    "build.sbt"
   ],
   "children": [
     {
