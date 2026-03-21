@@ -3,7 +3,8 @@
     "README.md",
     ".github/graph.json",
     ".github/workflows/sync.yml",
-    "build.sbt"
+    "build.sbt",
+    "project/plugins.sbt"
   ],
   "children": [
     {
