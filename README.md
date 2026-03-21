@@ -4,7 +4,7 @@ All configuration files contained herein are automatically copied into each of m
 
 Includes:
 - Config for the [Scalafmt](https://scalameta.org/scalafmt/) linter.
-- Config for the IDEs [IntelliJ IDEA](https://www.jetbrains.com/idea/) and [Visual Sutdio Code](https://code.visualstudio.com/).
+- Config for the IDEs [IntelliJ IDEA](https://www.jetbrains.com/idea/) and [Visual Studio Code](https://code.visualstudio.com/).
 - Git settings including `.gitignore` and `.gitattributes`.
 - GitHub [Actions](https://github.com/features/actions) CI workflows to verify build integrity.
 - An environment definition for GitHub [Codespaces](https://github.com/features/codespaces).
