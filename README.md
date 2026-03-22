@@ -2,7 +2,7 @@
 
 The single source of truth for basic configuration across all of my [Scala](https://www.scala-lang.org/) projects.
 
-## 👷 How does the workflow go?
+## 👷 What is the workflow?
 
 Changes made to the configuration files contained herein are automatically copied into each dependent project using [github-graph](https://github.com/SgtSwagrid/github-graph).
 Updates to these files should be made _here_, not in any of the downstream repositories, lest they be overwritten later.
