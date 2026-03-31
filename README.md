@@ -1,6 +1,6 @@
 <div align="center">
   <h1>⚙️ Scala Config</h1>
-  <p>The single source of truth for basic configuration across all of my <a href="https://www.scala-lang.org/">Scala</a> projects.</p>
+  <p>The single source of truth for basic configuration across all of my <a href="https://www.scala-lang.org/">Scala 3</a> projects.</p>
 </div>
 
 ## 👷 What's the workflow?
@@ -36,7 +36,7 @@ The full list of projects that rely on this configuration is defined in [`graph.
 ## 🤔 Should I use this in my projects too?
 
 Only if you want to, but this exists mainly for my own convenience.
-I would, however, argue that these settings are reasonable defaults for any Scala project.
+I would, however, argue that these settings are reasonable defaults for most Scala 3 projects.
 
 ## 🔨 How can this be used?
 
