@@ -34,4 +34,5 @@ The full list of projects that rely on this configuration is defined in [graph.j
 
 ## 🤔 Should I use this too?
 
-Only if you want to, but know that this is primarily for my own convenience.
+Only if you want to, but it's mainly for my own convenience.
+I would argue these settings are reasonable defaults for any Scala project.
