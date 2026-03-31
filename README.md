@@ -1,6 +1,6 @@
 <h1 align="center">⚙️ Scala Config</h1>
 
-<p align="center">The single source of truth for basic configuration across all of my <a href="https://www.scala-lang.org/">Scala</a>[Scala] projects.</p>
+<p align="center">The single source of truth for basic configuration across all of my <a href="https://www.scala-lang.org/">Scala</a> projects.</p>
 
 ## What's the workflow?
 
