@@ -14,8 +14,7 @@ concurrency:
 jobs:
 
   # Verify code format and build integrity for every PR.
-  build-test:
-    name: Build Test
+  build-integrity:
     runs-on: ubuntu-latest
     permissions:
       contents: write
