@@ -47,13 +47,5 @@
       "actor_type": "RepositoryRole",
       "bypass_mode": "always"
     }
-  ],
-  "_links": {
-    "self": {
-      "href": "https://api.github.com/repos/SgtSwagrid/scala-config/rulesets/14670349"
-    },
-    "html": {
-      "href": "https://github.com/SgtSwagrid/scala-config/rules/14670349"
-    }
-  }
+  ]
 }
