@@ -46,3 +46,7 @@ You have several options:
    You'll also need to send me a [PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) with write access to the corresponding repositories.
 2. If you want continuous updates, but want to deviate from my template according to your own needs, fork this repository and _then_ add your project(s) to [`graph.json`](.github/graph.json) (after removing the existing projects from the list).
 3. If you just want the settings without the updates, click '**Use this template**' on GitHub (for a new project), or simply copy and paste the files (for an existing project).
+
+## 👁️ See also
+
+This is a downstream, more specialised version of [Git Config](https://github.com/SgtSwagrid/git-config).
