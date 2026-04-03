@@ -1,5 +1,4 @@
 {
-  "_comment": "Ruleset to require the CI check to pass before allowing a merge.",
   "name": "Require CI",
   "target": "branch",
   "enforcement": "active",
@@ -48,5 +47,13 @@
       "actor_type": "RepositoryRole",
       "bypass_mode": "always"
     }
-  ]
+  ],
+  "_links": {
+    "self": {
+      "href": "https://api.github.com/repos/SgtSwagrid/scala-config/rulesets/14670224"
+    },
+    "html": {
+      "href": "https://github.com/SgtSwagrid/scala-config/rules/14670224"
+    }
+  }
 }
