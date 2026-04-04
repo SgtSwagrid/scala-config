@@ -5,7 +5,7 @@
 
 ## 👷 What's the workflow?
 
-Changes made to the configuration files contained herein are automatically copied into each dependent project using [github-graph](https://github.com/SgtSwagrid/github-graph).
+Changes made to the configuration files contained herein are automatically copied into each dependent project using [Github Graph](https://github.com/SgtSwagrid/github-graph).
 Updates to these files should be made _here_, not in any of the downstream repositories, lest they be overwritten later.
 
 ## 📋 What's included?
