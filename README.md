@@ -44,7 +44,7 @@ You have several options:
 
 1. If you want continuous updates as this repository evolves, open a PR to add your project(s) to [`graph.json`](.github/graph.json).
    You'll also need to send me a [PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) with write access to the corresponding repositories.
-2. If you want continuous updates, but want to deviate from my template according to your own needs, fork this repository and _then_ add your project(s) to [`graph.json`](.github/graph.json) (after removing the existing projects from the list).
+2. If you want continuous updates, but want to deviate from my template according to your own needs, fork this repository and _then_ add your project(s) to [`graph.json`](.github/graph.json) (after removing the existing projects from the list). In this case, you can add the PAT yourself.
 3. If you just want the settings without the updates, click '**Use this template**' on GitHub (for a new project), or simply copy and paste the files (for an existing project).
 
 ## 👁️ See also
