@@ -30,6 +30,11 @@
     }, {
       "target": {
         "owner": "SgtSwagrid",
+        "name": "not-enough-structures",
+      }
+    }, {
+      "target": {
+        "owner": "SgtSwagrid",
         "name": "abstract-nonsense"
       }
     }, {
