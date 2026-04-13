@@ -17,12 +17,12 @@ object IdeSettings extends AutoPlugin {
     // Exclude build output and other metadata from IDE indexing and project view.
     ideExcludedDirectories := {
 
-      // Excluded in any subdirectory.
+      // Excluded in any subdirectory:
       val recursive = Seq("target", ".js", ".jvm").flatMap(name =>
         (baseDirectory.value ** name).get,
       )
 
-      // Excluded at the root level only.
+      // Excluded at the root level only:
       val rootOnly = Seq(
         // Build tools
         file(".metals"),
@@ -48,6 +48,7 @@ object IdeSettings extends AutoPlugin {
         file("CLAUDE.md"),
         file(".claude"),
         file(".mcp.json"),
+        file(".playwright.mcp"),
         file(".scala-steward.conf"),
       )
 
@@ -56,13 +57,13 @@ object IdeSettings extends AutoPlugin {
   )
 
   override lazy val projectSettings = Seq(
-    // Apply package prefix to IDE settings for both main and test sources.
+    // Apply package prefix to IDE settings for both main and test sources:
     idePackagePrefix := Some(packagePrefix.value).filter(_.nonEmpty),
     ideBasePackages  := Seq(packagePrefix.value).filter(_.nonEmpty),
   )
 
   override lazy val globalSettings = Seq(
-    // Prevent a warning about unused setting keys.
+    // Prevent a warning about unused setting keys:
     excludeLintKeys ++= Set(
       packagePrefix,
       idePackagePrefix,
