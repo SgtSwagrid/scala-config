@@ -45,6 +45,11 @@
     }, {
       "target": {
         "owner": "SgtSwagrid",
+        "name": "page-loader"
+      }
+    }, {
+      "target": {
+        "owner": "SgtSwagrid",
         "name": "fairmap"
       }
     }
