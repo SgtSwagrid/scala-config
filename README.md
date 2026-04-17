@@ -49,4 +49,4 @@ You have several options:
 
 ## 👁️ See also
 
-[Git Config](https://github.com/SgtSwagrid/git-config) is an upstream template for GitHub projects in general.
+- [Git Config](https://github.com/SgtSwagrid/git-config) is an upstream template for GitHub projects in general.
