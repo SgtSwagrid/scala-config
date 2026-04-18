@@ -1,0 +1,13 @@
+name: Linter
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  lint:
+    uses: SgtSwagrid/scalafmt-revolver/linter.yml@main
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
