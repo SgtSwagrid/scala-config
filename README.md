@@ -55,4 +55,4 @@ In particular, and contra [LICENSE.md](LICENSE.md), you may remove the license t
 
 ## 👁️ See also
 
-- [Git Config](https://github.com/SgtSwagrid/git-config) is an upstream template for GitHub projects in general.
+- [GitHub Config](https://github.com/SgtSwagrid/github-config) is an upstream template for GitHub projects in general.
