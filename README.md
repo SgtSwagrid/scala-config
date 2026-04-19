@@ -1,6 +1,9 @@
 <div align="center">
   <h1>⚙️ Scala Config</h1>
   <p>The single source of truth for basic configuration across all of my <a href="https://www.scala-lang.org/">Scala 3</a> projects.</p>
+  <span>
+    <a href="https://alecdorrington.com/scala-config"><img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Documentation" /></a>
+  </span>
 </div>
 
 ## 👷 What's the workflow?
