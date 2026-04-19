@@ -6,8 +6,8 @@
 // Configured by '.scalafmt.conf'.
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.6.0")
 
-// For allowing SBT to configure IntelliJ project settings.
-addSbtPlugin("org.jetbrains.scala" % "sbt-ide-settings" % "1.1.4")
-
 // For aggregating Scaladoc across all subprojects into a single site.
 addSbtPlugin("com.github.sbt" % "sbt-unidoc" % "0.6.1")
+
+// For allowing SBT to configure IntelliJ project settings.
+addSbtPlugin("org.jetbrains.scala" % "sbt-ide-settings" % "1.1.4")
