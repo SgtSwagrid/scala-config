@@ -9,7 +9,7 @@
     {
       "target": {
         "owner": "SgtSwagrid",
-        "name": "scala-website-template"
+        "name": "scala-website-config"
       }
     }, {
       "target": {
@@ -45,11 +45,6 @@
       "target": {
         "owner": "SgtSwagrid",
         "name": "page-loader"
-      }
-    }, {
-      "target": {
-        "owner": "SgtSwagrid",
-        "name": "fairmap"
       }
     }
   ]
