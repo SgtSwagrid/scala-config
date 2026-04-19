@@ -4,7 +4,6 @@
     ".github/graph.json",
     ".github/workflows/sync.yml",
     "build.sbt",
-    "project/plugins.sbt"
   ],
   "children": [
     {
