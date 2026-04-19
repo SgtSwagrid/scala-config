@@ -60,4 +60,4 @@ In particular, and contra [LICENSE.md](LICENSE.md), you may remove the license t
 
 - [GitHub Config](https://github.com/SgtSwagrid/github-config) is an upstream template for GitHub projects in general.
 - [Scala Website Config](https://github.com/SgtSwagrid/scala-website-config) is a downstream template for Scala _websites_ in particular.
-- [Scala Library Config](https://github.com/SgtSwagrid/scala-website-config) is a downstream template for Scala _libraries_ in particular.
+- [Scala Library Config](https://github.com/SgtSwagrid/scala-library-config) is a downstream template for Scala _libraries_ in particular.
