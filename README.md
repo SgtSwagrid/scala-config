@@ -5,7 +5,7 @@
 
 ## 👷 What's the workflow?
 
-Changes made to the configuration files contained herein are automatically copied into each dependent project using [Github Graph](https://github.com/SgtSwagrid/github-graph).
+Changes made to the configuration files contained herein are automatically copied into each dependent project using [GitHub Graph](https://github.com/SgtSwagrid/github-graph).
 Updates to these files should be made _here_, not in any of the downstream repositories, lest they be overwritten later.
 
 ## 📋 What's included?
@@ -20,13 +20,13 @@ Updates to these files should be made _here_, not in any of the downstream repos
 ### IDE configuration
 
 - Some config for [IntelliJ IDEA](https://www.jetbrains.com/idea/) and [Visual Studio Code](https://code.visualstudio.com/).
-  Including IDE config can be controversial, but it is sanitised and helps to enable a consistent development experience.
+  Including IDE config can be controversial, but it is sanitized and helps to enable a consistent development experience.
 - [Claude Code](https://claude.com/product/claude-code) integration with IntelliJ.
 - An environment definition for GitHub [Codespaces](https://github.com/features/codespaces).
 
 ### Licensing
 
-- The [MIT](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide) license,
+- The [MIT](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide) licence,
   which I tend to use by default as it is fairly permissive.
 
 ## 🏗️ Where is this used?
@@ -47,11 +47,11 @@ You have several options:
 2. If you want continuous updates, but want to deviate from my template according to your own needs, fork this repository and _then_ add your project(s) to [graph.json](.github/graph.json) (after removing the existing projects from the list). In this case, you can add the PAT yourself.
 3. If you just want the settings without the updates, click '**Use this template**' on GitHub (for a new project), or simply copy and paste the files (for an existing project).
 
-## 👮‍♂️ License
+## 👮‍♂️ Licence
 
-The included MIT license should be considered only as part of the template, and is not binding.
+The included MIT licence should be considered only as part of the template, and is not binding.
 This repository is hereby released to the public domain, to be used freely.
-In particular, and contra [LICENSE.md](LICENSE.md), you may remove the license text from copies.
+In particular, and contra [LICENSE.md](LICENSE.md), you may remove the licence text from copies.
 
 ## 👁️ See also
 
