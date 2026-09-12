@@ -33,7 +33,7 @@ or else the CI pipeline won't allow it to be merged.
 
 ### Syntax
 
-- Use new Scala 3 syntax in general, and in partcular:
+- Use new Scala 3 syntax in general, and in particular:
   - Use significant indentation (without braces `{}`).
   - Use `[X: {A as a, B, C}]` instead of `[X : B : C](using a: A[X])` for context bounds.
   - Prefer `given` and `using` rather than `implicit`.
