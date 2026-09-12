@@ -2,7 +2,7 @@
 
 This document lays out the basic principles which govern the coding style in this project.
 The rules here are not of a strictly binding nature, and can be broken when there is good reason for doing so.
-While this document is for humans too, some of the excessive specificity is for the sake of LLMs.
+While this document is for humans too, some of the excessive specificity is for the sake of LLM agents.
 
 ## 🤖 Scalafmt
 
@@ -47,7 +47,6 @@ or else the CI pipeline won't allow it to be merged.
 - When in doubt, follow the existing style of the codebase.
 
 ### Naming conventions
-
 
 - Use `camelCase` for variable and method names.
 - Use `PascalCase` for type, trait, class, and object names, but also for context bound names following `as`.
