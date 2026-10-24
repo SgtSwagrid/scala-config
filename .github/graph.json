@@ -19,6 +19,14 @@
       "ignore": [
         "CONTRIBUTING.md"
       ]
+    }, {
+      "target": {
+        "owner": "SgtSwagrid",
+        "name": "scala-browser-plugin-config"
+      },
+      "ignore": [
+        "CONTRIBUTING.md"
+      ]
     }
   ]
 }
