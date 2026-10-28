@@ -22,6 +22,11 @@ jobs:
       contents: write
       pull-requests: write
 
+    # Warnings fail the build, of the tests as much as of the code, wherever
+    # sbt is started in this job (see `project/Werror.scala`).
+    env:
+      WERROR: "true"
+
     steps:
 
       # A pull request's own branch rather than its merge, so that a formatting
@@ -107,9 +112,8 @@ jobs:
           echo "::error::The code was not formatted, so a commit fixing it was made, which CI builds instead."
           exit 1
 
-      # Warnings fail the build, of the tests as much as of the code.
       - name: Build
-        run: sbt --client 'set ThisBuild / scalacOptions += "-Werror"; Test/compile'
+        run: sbt --client Test/compile
 
       # Every test runs: sbt's `test` would skip those it has results for, and
       # takes no account of a change to the resources they read.
