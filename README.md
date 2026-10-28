@@ -27,7 +27,7 @@ Updates to these files should be made _here_, not in any of the downstream repos
 ### Licensing
 
 - The [MIT](https://tlo.mit.edu/understand-ip/exploring-mit-open-source-license-comprehensive-guide) licence,
-  which I tend to use by default as it is fairly permissive.
+  a permissive default choice.
 
 ## 🏗️ Where is this used?
 
