@@ -33,44 +33,30 @@ jobs:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GH_TOKEN || github.token }}
 
-      - name: Install Java
-        uses: actions/setup-java@v6
-        with:
-          java-version: "21"
-          distribution: "temurin"
-          cache: sbt
+      # Formatting is checked by scalafmt's native image, of the version which
+      # the configuration names, before anything is installed for the build.
+      # Through sbt it would wait for the build to load, and check a source
+      # shared by several platforms once for each. It checks what
+      # `sbt scalafmtCheckAll` does: every project's sources, not their
+      # resources, nor the build definition.
+      - name: Install scalafmt
+        run: |
+          version=$(sed -nE 's/^version *= *"?([0-9.]+)"?.*/\1/p' .scalafmt.conf)
+          curl -fsSL -o "$RUNNER_TEMP/scalafmt" \
+            "https://github.com/scalameta/scalafmt/releases/download/v$version/scalafmt-linux-glibc"
+          chmod +x "$RUNNER_TEMP/scalafmt"
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+          git ls-files -z -- ':(glob)**/src/**/*.scala' ':(glob,exclude)**/src/*/resources/**' \
+            > "$RUNNER_TEMP/sources"
 
-      - name: Install SBT
-        uses: sbt/setup-sbt@v1
-        with:
-          disk-cache: false
-
-      # sbt's disk cache keeps what each task made, such as compiled classes and
-      # linked JavaScript, under a hash of its inputs, so whatever is unchanged
-      # since the run that saved it is reused rather than made again. Every run
-      # saves its own and restores the newest: the pull request's, or else
-      # main's. It only ever grows, so it is begun afresh each week.
-      - name: Name build cache
-        id: cache
-        run: echo "prefix=sbt-${{ runner.os }}-$(date -u +%G-W%V)-" >> "$GITHUB_OUTPUT"
-
-      - name: Restore build cache
-        uses: actions/cache/restore@v6
-        with:
-          path: ~/.cache/sbt
-          key: ${{ steps.cache.outputs.prefix }}${{ github.run_id }}
-          restore-keys: ${{ steps.cache.outputs.prefix }}
-
-      # Every sbt command from here on goes to the one server the first starts,
-      # so the build is loaded once, however many steps use it.
       - name: Check formatting
         id: format
         continue-on-error: true
-        run: sbt --client scalafmtCheckAll
+        run: xargs -0 -r scalafmt --check --non-interactive --respect-project-filters < "$RUNNER_TEMP/sources"
 
       - name: Fix formatting
         if: steps.format.outcome == 'failure'
-        run: sbt --client scalafmtAll
+        run: xargs -0 -r scalafmt --non-interactive --respect-project-filters < "$RUNNER_TEMP/sources"
 
       # A pull request is given the fix as a commit of its own.
       - name: Commit formatting
@@ -107,8 +93,39 @@ jobs:
           echo "::error::The code was not formatted, so a commit fixing it was made, which CI builds instead."
           exit 1
 
-      # Warnings fail the build, of the tests as much as of the code.
+      - name: Install Java
+        uses: actions/setup-java@v6
+        with:
+          java-version: "21"
+          distribution: "temurin"
+          cache: sbt
+
+      - name: Install SBT
+        uses: sbt/setup-sbt@v1
+        with:
+          disk-cache: false
+
+      # sbt's disk cache keeps what each task made, such as compiled classes and
+      # linked JavaScript, under a hash of its inputs, so whatever is unchanged
+      # since the run that saved it is reused rather than made again. Every run
+      # saves its own and restores the newest: the pull request's, or else
+      # main's. It only ever grows, so it is begun afresh each week.
+      - name: Name build cache
+        id: cache
+        run: echo "prefix=sbt-${{ runner.os }}-$(date -u +%G-W%V)-" >> "$GITHUB_OUTPUT"
+
+      - name: Restore build cache
+        uses: actions/cache/restore@v6
+        with:
+          path: ~/.cache/sbt
+          key: ${{ steps.cache.outputs.prefix }}${{ github.run_id }}
+          restore-keys: ${{ steps.cache.outputs.prefix }}
+
+      # Every sbt command from here on goes to the one server the first starts,
+      # so the build is loaded once, however many steps use it. Warnings fail
+      # the build, of the tests as much as of the code.
       - name: Build
+        id: build
         run: sbt --client 'set ThisBuild / scalacOptions += "-Werror"; Test/compile'
 
       # Every test runs: sbt's `test` would skip those it has results for, and
@@ -131,8 +148,9 @@ jobs:
           path: dist
           retention-days: 1
 
+      # Only once started, as `sbt --client` would otherwise start a server.
       - name: Stop sbt
-        if: always()
+        if: always() && steps.build.outcome != 'skipped'
         run: sbt --client shutdown || true
 
       - name: Save build cache
